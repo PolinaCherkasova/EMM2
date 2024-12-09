@@ -48,10 +48,11 @@ for(k in 1 : n)
   B[k + 1] = B[k] + e[k + 1] 
 for(k in 1 : (n + 1)) 
   S[k] = S_0*exp((a - sigma^2/2)*k*delta + sigma*B[k])
-plot(seq(0, delta*1000, delta), S, type = 'l', main = "Реализация процесса (9):")
+plot(S, type = "l", lwd = "1", main = "Реализация геометрического броуновского движения")
 
 # 6. Построить 200 реализаций процесса (10) на одном графике.
-plot(seq(0, delta*1000, delta), B, type = 'l', ylim = c(-1, 1), main = "200 реализаций процесса (10):")
+plot(seq(0, delta*1000, delta), S, type = "l", xlim = c(0, 1000*delta), ylim = range(0, 2),
+     main = "Ансамбль реализаций броуновского движения")
 for(i in 1 : 200)
 {
   e = rnorm(n + 1, 0, sqrt(delta)) 
@@ -61,6 +62,6 @@ for(i in 1 : 200)
     B[k + 1] = B[k] + e[k]  
     S[k + 1] = S_0*exp((a - sigma^2/2)*(k + 1)*delta + sigma*B[k + 1])
   }
-  lines(seq(0, delta*1000, delta), B, type = 'l', col = "red")
+  lines(seq(0, delta*1000, delta), S, type = 'l', col = "red")
 }
 
